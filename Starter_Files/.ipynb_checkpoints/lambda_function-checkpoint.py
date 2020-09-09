@@ -27,6 +27,36 @@ def build_validation_result(is_valid, violated_slot, message_content):
     }
 
 
+def validate_data(age, investment_amount, intent_request):
+    """
+    Validates the data provided by the user.
+    """
+
+    # Validate that the user is over 18 years old
+    if age is not None:
+        age = parse_int(age)
+        #
+        if age < 0 or age > 65:
+            return build_validation_result(
+                False,
+                "age",
+                "Your age should be greater than zero and less than 65 to use this service"
+            )
+
+    # Validate the investment amount, it should be > 0
+    if investment_amount is not None:
+        investment_amount = parse_int(investment_amount)
+    
+    # The investment_amount should be greater than 5000
+        if investment_amount < 5000:
+            return build_validation_result(
+                False,
+                "investmentAmount",
+                "The investment amount should be equals or greater than 5000 to use this service"
+            )
+    # A True results is returned if age or amount are valid
+    return build_validation_result(True, None, None)
+
 ### Dialog Actions Helper Functions ###
 def get_slots(intent_request):
     """
@@ -112,6 +142,8 @@ def recommend_portfolio(intent_request):
 
     if source == "DialogCodeHook":
         # Perform basic validation on the supplied input slots.
+        slots = get_slots(intent_request)
+        
         # Use the elicitSlot dialog action to re-prompt
         # for the first violation detected.
 
