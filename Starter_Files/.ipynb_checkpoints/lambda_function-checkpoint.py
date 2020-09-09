@@ -142,13 +142,29 @@ def recommend_portfolio(intent_request):
 
     if source == "DialogCodeHook":
         # Perform basic validation on the supplied input slots.
+        
+        # Gets all the slots
         slots = get_slots(intent_request)
         
         # Use the elicitSlot dialog action to re-prompt
         # for the first violation detected.
+        # Validates user's input using the validate_data function
+        validation_result = validate_data(age, investment_amount, intent_request)
 
-        ### YOUR DATA VALIDATION CODE STARTS HERE ###
+        # If the data provided by the user is not valid,
+        # the elicitSlot dialog action is used to re-prompt for the first violation detected.
+        if not validation_result["isValid"]:
+            slots[validation_result["violatedSlot"]] = None  # Cleans invalid slot
 
+            # Returns an elicitSlot dialog to request new data for the invalid slot
+            return elicit_slot(
+                intent_request["sessionAttributes"],
+                intent_request["currentIntent"]["name"],
+                slots,
+                validation_result["violatedSlot"],
+                validation_result["message"],
+            )
+        
         ### YOUR DATA VALIDATION CODE ENDS HERE ###
 
         # Fetch current session attibutes
@@ -157,7 +173,9 @@ def recommend_portfolio(intent_request):
         return delegate(output_session_attributes, get_slots(intent_request))
 
     # Get the initial investment recommendation
-
+    
+    initial_recommendation = recommend_portfolio(intent_request)
+    
     ### YOUR FINAL INVESTMENT RECOMMENDATION CODE STARTS HERE ###
 
     ### YOUR FINAL INVESTMENT RECOMMENDATION CODE ENDS HERE ###
