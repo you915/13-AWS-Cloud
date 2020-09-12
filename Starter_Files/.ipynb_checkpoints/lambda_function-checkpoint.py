@@ -36,11 +36,11 @@ def validate_data(age, investment_amount, intent_request):
     if age is not None:
         age = parse_int(age)
         #
-        if age < 0 or age > 65:
+        if age < 0 or age >= 65:
             return build_validation_result(
                 False,
                 "age",
-                "Your age should be greater than zero and less than 65 to use this service"
+                "The maximum age to contract this service is 64, can you provide an age between 0 and 64 please?"
             )
 
     # Validate the investment amount, it should be > 0
@@ -52,7 +52,7 @@ def validate_data(age, investment_amount, intent_request):
             return build_validation_result(
                 False,
                 "investmentAmount",
-                "The investment amount should be equals or greater than 5000 to use this service"
+                "The minimum investment amount is $5,000 USD, could you please provide a greater amount?"
             )
     # A True results is returned if age or amount are valid
     return build_validation_result(True, None, None)
@@ -109,7 +109,7 @@ def close(session_attributes, fulfillment_state, message):
 
     return response
 
-def investment_recommendation(risk_level)
+def investment_recommendation(risk_level):
     """
     Response with an investment recommendation based on the selected risk level
     """
@@ -118,11 +118,11 @@ def investment_recommendation(risk_level)
     elif risk_level == "Very Low":
         recommendation = "80% bonds (AGG), 20% equities (SPY)"        
     elif risk_level == "Low":
-        recommendation = "80% bonds (AGG), 20% equities (SPY)" 
+        recommendation = "60% bonds (AGG), 40% equities (SPY)" 
     elif risk_level == "Medium":
-        recommendation = "80% bonds (AGG), 20% equities (SPY)" 
+        recommendation = "40% bonds (AGG), 60% equities (SPY)" 
     elif risk_level == "High":
-        recommendation = "80% bonds (AGG), 20% equities (SPY)" 
+        recommendation = "20% bonds (AGG), 80% equities (SPY)" 
     else:
         recommendation = "0% bonds (AGG), 100% equities (SPY)"
     
@@ -174,7 +174,7 @@ def recommend_portfolio(intent_request):
 
     # Get the initial investment recommendation
     
-    initial_recommendation = recommend_portfolio(intent_request)
+    initial_recommendation = investment_recommendation(risk_level)
     
     ### YOUR FINAL INVESTMENT RECOMMENDATION CODE STARTS HERE ###
 
@@ -204,7 +204,7 @@ def dispatch(intent_request):
     intent_name = intent_request["currentIntent"]["name"]
 
     # Dispatch to bot's intent handlers
-    if intent_name == "RecommendPortfolio":
+    if intent_name == "RecommendPortfolio_":
         return recommend_portfolio(intent_request)
 
     raise Exception("Intent with name " + intent_name + " not supported")
