@@ -10,7 +10,7 @@
   },
   "outputDialogMode": "Text",
   "currentIntent": {
-    "name": "RecommendPortfolio",
+    "name": "RecommendPortfolio_",
     "slots": {
       "firstName": "John",
       "age": "40",
