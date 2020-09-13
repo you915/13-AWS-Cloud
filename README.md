@@ -67,6 +67,8 @@ Sign in into your AWS Management Console and [create a new custom Amazon Lex bot
 
 Create the `RecommendPortfolio` intent, and configure some sample utterances as follows (you can add more utterances as you wish):
 
+![Utterances](Images/utterances.JPG)
+
 * I want to save money for my retirement
 * I'm ​`{age}​` and I would like to invest for my retirement
 * I'm `​{age}​` and I want to invest for my retirement
@@ -82,6 +84,7 @@ Move to the *Confirmation Prompt* section, and set the following messages:
 
  This bot will utilize use four slots, three using built-in types and one custom slot named `riskLevel`. Define the three initial slots as follows:
 
+![slots](Images/slots.JPG)
 
 | Name             | Slot Type            | Prompt                                                                    |
 | ---------------- | -------------------- | ------------------------------------------------------------------------- |
@@ -90,6 +93,8 @@ Move to the *Confirmation Prompt* section, and set the following messages:
 | investmentAmount | AMAZON.NUMBER        | How much do you want to invest?                                           |
 
 The `riskLevel` custom slot will be used to retrieve the risk level the user is willing to take on the investment portfolio. Create this custom slot as follows:
+
+![riskLevel](Images/risklevel.JPG)
 
 * Select the `+` icon next to 'Slot Types' in the 'Editor' on the left side of the screen.
 * Choose `create custom slot` from the resulting display window.
@@ -102,6 +107,8 @@ To format the response cards for the intent, click on the gear icon next to the 
 ![gear_icon](Images/gear_icon.png)
 
 Next, input the following data in the resulting display window:
+
+![riskLevel_settings](Images/riskLevel_settings.JPG)
 
 * **Prompt:** What level of investment risk would you like to take?
 * **Maximum number of retries:** 2
@@ -121,7 +128,7 @@ Configure the response cards for the `riskLevel` slot as is shown bellow:
 
 Leave the error handling configuration for the `RecommendPortfolio` bot with the default values.
 
-![Error handling configuration](Images/error_handling.png)
+![Error handling configuration](Images/error_handling.JPG)
 
 #### Build and Test the Robo Advisor
 
@@ -137,12 +144,16 @@ In the Lambda function, start by deleting the AWS generated default lines of cod
 
 ##### User Input Validation
 
+![guidelines](Images/guidelines.JPG)
+
 * The `age` should be greater than zero and less than 65.
 * the `investment_amount` should be equals o greater than 5000.
 
 ##### Investment Portfolio Recommendation
 
 Once the intent is fulfilled, the bot should response with an investment recommendation based on the selected risk level as follows:
+
+![investment_recommendation](Images/investment_recommendation.JPG)
 
 * **none:** "100% bonds (AGG), 0% equities (SPY)"
 * **very low:** "80% bonds (AGG), 20% equities (SPY)"
@@ -156,6 +167,8 @@ Be creative while coding your solution, you can have all the code on the `recomm
 Once you finish coding your lambda function, test it using the [sample test cases](Test_Cases/) provided for this homework.
 
 After successfully testing your code, open the Amazon Lex Console and navigate to the `RecommendPortfolio` bot configuration, integrate your new lambda function by selecting it on the _Lambda initialization and validation_ and _Fulfillment_ sections. Build your bot, and you should have a conversation as follows.
+
+![lambda](Images/lambda.JPG)
 
 ![Robo Advisor test with Lambda](Images/Enhance_the_Robo_Advisor_with_Amazon_Lambda_Function.gif)
 
