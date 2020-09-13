@@ -40,7 +40,7 @@ def validate_data(age, investment_amount, intent_request):
             return build_validation_result(
                 False,
                 "age",
-                "Your age should be greater than zero and less than 65 to use this service"
+                "The maximum age to contract this service is 64, can you provide an age between 0 and 64 please?"
             )
 
     # Validate the investment amount, it should be > 0
@@ -52,7 +52,7 @@ def validate_data(age, investment_amount, intent_request):
             return build_validation_result(
                 False,
                 "investmentAmount",
-                "The investment amount should be equals or greater than 5000 to use this service"
+                "The minimum investment amount is $5000 USD, could you please provide a greater amount"
             )
     # A True results is returned if age or amount are valid
     return build_validation_result(True, None, None)
@@ -164,8 +164,6 @@ def recommend_portfolio(intent_request):
                 validation_result["violatedSlot"],
                 validation_result["message"],
             )
-        
-        ### YOUR DATA VALIDATION CODE ENDS HERE ###
 
         # Fetch current session attibutes
         output_session_attributes = intent_request["sessionAttributes"]
@@ -174,11 +172,7 @@ def recommend_portfolio(intent_request):
 
     # Get the initial investment recommendation
     
-    #initial_recommendation = investment_recommendation(risk_level)
-    
-    ### YOUR FINAL INVESTMENT RECOMMENDATION CODE STARTS HERE ###
-
-    ### YOUR FINAL INVESTMENT RECOMMENDATION CODE ENDS HERE ###
+    initial_recommendation = investment_recommendation(risk_level)
 
     # Return a message with the initial recommendation based on the risk level.
     return close(
@@ -204,7 +198,7 @@ def dispatch(intent_request):
     intent_name = intent_request["currentIntent"]["name"]
 
     # Dispatch to bot's intent handlers
-    if intent_name == "RecommendPortfolio":
+    if intent_name == "RecommendPortfolio_":
         return recommend_portfolio(intent_request)
 
     raise Exception("Intent with name " + intent_name + " not supported")
