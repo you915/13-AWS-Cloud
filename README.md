@@ -81,6 +81,8 @@ Create the `RecommendPortfolio_` intent, and configure some sample utterances as
 
 Move to the *Confirmation Prompt* section, and set the following messages:
 
+![confirmation_prompt](Images/confirmation_prompt.JPG)
+
 * **Confirm:** Thanks, now I will look for the best investment portfolio for you.
 * **Cancel:** I will be pleased to assist you in the future.
 
