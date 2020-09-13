@@ -49,7 +49,7 @@ You are asked to accomplish the following main tasks:
 
 ---
 
-### Instructions
+# Create RoboAdvisor with proper parameter
 
 #### Initial Robo Advisor Configuration
 
@@ -65,7 +65,9 @@ Sign in into your AWS Management Console and [create a new custom Amazon Lex bot
 * **Advanced options**: No
 * *Leave default values for all other options.*
 
-Create the `RecommendPortfolio` intent, and configure some sample utterances as follows (you can add more utterances as you wish):
+# Create RecommendPortfolio_ with proper name utterances
+
+Create the `RecommendPortfolio_` intent, and configure some sample utterances as follows (you can add more utterances as you wish):
 
 ![Utterances](Images/utterances.JPG)
 
@@ -91,6 +93,8 @@ Move to the *Confirmation Prompt* section, and set the following messages:
 | firstName        | AMAZON.US_FIRST_NAME | Thank you for trusting me to help, could you please give me your name? |
 | age              | AMAZON.NUMBER        | How old are you?                                                          |
 | investmentAmount | AMAZON.NUMBER        | How much do you want to invest?                                           |
+
+# Created RiskLevel custom slots with proper card slots
 
 The `riskLevel` custom slot will be used to retrieve the risk level the user is willing to take on the investment portfolio. Create this custom slot as follows:
 
@@ -128,9 +132,13 @@ Configure the response cards for the `riskLevel` slot as is shown bellow:
 
 Leave the error handling configuration for the `RecommendPortfolio` bot with the default values.
 
+# Test RoboAdvisor after build with error handling configuration
+![error_handling](Images/error_handling.gif)
+
 ![Error handling configuration](Images/error_handling.JPG)
 
-#### Build and Test the Robo Advisor
+
+# Build and Test the Robo Advisor
 
 In this section, you will test your Robo Advisor. To build your bot, click on the `Build` button in the upper right hand corner. Once the build is complete, test it in the chatbot window. You should see a conversation like the one below.
 
@@ -142,14 +150,14 @@ In this section, you will create an Amazon Lambda function that will validate th
 
 In the Lambda function, start by deleting the AWS generated default lines of code, then paste in the starter code provided in [lambda_function.py](Starter_Files/lambda_function.py) and complete the `recommend_portfolio()` function by following these guidelines:
 
-##### User Input Validation
+# User Input Validation
 
 ![guidelines](Images/guidelines.JPG)
 
 * The `age` should be greater than zero and less than 65.
 * the `investment_amount` should be equals o greater than 5000.
 
-##### Investment Portfolio Recommendation
+# Investment Portfolio Recommendation
 
 Once the intent is fulfilled, the bot should response with an investment recommendation based on the selected risk level as follows:
 
@@ -165,6 +173,14 @@ Once the intent is fulfilled, the bot should response with an investment recomme
 Be creative while coding your solution, you can have all the code on the `recommend_portfolio()` function, or you can split the functionality across different functions, put your Python coding skills in action!
 
 Once you finish coding your lambda function, test it using the [sample test cases](Test_Cases/) provided for this homework.
+
+| Age_error                           | Correct_Dialog                      |
+| ----------------------------------- | ----------------------------------- |
+| ![Age_error](Images/age_error.JPG)  | ![Correct_Dialog](Images/correct_dialog.JPG) |
+
+| Incorrect Amount Error              | Negative Age Error                  |
+| ----------------------------------- | ----------------------------------- |
+| ![IncorAmountErr](Images/amount_error.JPG) | ![Neg Age Error](Images/neg_age_error.JPG)  |
 
 After successfully testing your code, open the Amazon Lex Console and navigate to the `RecommendPortfolio` bot configuration, integrate your new lambda function by selecting it on the _Lambda initialization and validation_ and _Fulfillment_ sections. Build your bot, and you should have a conversation as follows.
 
