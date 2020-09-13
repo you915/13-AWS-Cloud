@@ -31,12 +31,12 @@ def validate_data(age, investment_amount, intent_request):
     """
     Validates the data provided by the user.
     """
-
+    
     # Validate that the user is over 18 years old
     if age is not None:
         age = parse_int(age)
         #
-        if age < 0 or age > 65:
+        if age < 0 or age >= 65:
             return build_validation_result(
                 False,
                 "age",
