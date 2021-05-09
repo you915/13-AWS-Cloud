@@ -1,10 +1,10 @@
-# Unit 13 Homework Assignment - The Power of the Cloud and Unsupervised Learning
+# The Power of the Cloud and Unsupervised Learning
 
 ## Background
 
 It is time to take what you have learned about unsupervised learning and the AWS services and apply it to new situations. For this assignment, you will need to complete **one of two** (not both) challenges. Which challenge you take on is your choice. Just be sure to give it your all -- as the skills you hone will become powerful tools in your FinTech tool belt.
 
-### Before You Begin
+### Project Plan
 
 1. Create a new repository for this project called `unit13-challenge`. **Do not add this homework to an existing repository**.
 
@@ -194,22 +194,3 @@ After successfully testing your code, open the Amazon Lex Console and navigate t
 
 ![Robo Advisor test with Lambda](Images/Enhance_the_Robo_Advisor_with_Amazon_Lambda_Function.gif)
 
-### Submission
-
-You should create a brand new repository in GitHub and upload the following files to your repo.
-
-* A python script with your final lambda function.
-
-* From the Amazon Lex Console, export your bot, intent, and slot using `Amazon Lex` as the target platform, and upload the ZIP files to your repo.
-
-* Create a short video or animated GIF showing a demo of your Robo Advisor in action from the test window. Upload the video or animated GIF file to your repo.
-
-Once you have uploaded all the files into the repo, post a link to your homework's repository in BootCamp Spot.
-
-### Hints
-
-* If you are using a Mac, you can create a screen-recording using the built-in QuickTime player. Follow [this link](https://support.apple.com/en-us/HT208721#quicktime) to learn more.
-
-* If you are using Windows 10, you can create a screen-recording using the built-in Xbox Game Bar. Follow [this link](https://beta.support.xbox.com/help/friends-social-activity/share-socialize/record-game-clips-game-bar-windows-10) to learn more.
-
----
